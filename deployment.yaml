@@ -15,6 +15,17 @@ spec:
       containers:
         - name: my-app
           image: billyang3416/spring-tls-app:latest
+          env:
+            - name: KEYSTORE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: my-tls-secret
+                  key: keystore-password
+            - name: KEY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: my-tls-secret
+                  key: key-password
           ports:
             - containerPort: 8080
           volumeMounts:
